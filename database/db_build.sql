@@ -1,43 +1,46 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, userteams, teams, teamprojects, mentors;
+DROP TABLE IF EXISTS users, teams, userteam, teamprojects, mentors, usermentor CASCADE;
 
 CREATE TABLE IF NOT EXISTS users (
     id                SERIAL     PRIMARY KEY,
-    first_name        TEXT       NOT NULL,
-    last_name         TEXT       NOT NULL,
-    github_user_name  TEXT       NOT NULL,
-    nationality       TEXT       NOT NULL,
-    languages         TEXT       NOT NULL,
-    place_of_birth    TEXT       NOT NULL,
-    favorite_hobby    TEXT       NOT NULL,
-    favorite_book     TEXT       NOT NULL,
-    siblings          INTEGER,
-    mentor_id         INTEGER REFERENCES mentors(id)
-);
-
-
-CREATE TABLE IF NOT EXISTS userteams (
-    user_id       INTEGER REFERENCES users(id),
-    team_id       INTEGER REFERENCES teams(id)
+    first_name        VARCHAR(64)  NOT NULL,
+    last_name         VARCHAR(64)  NOT NULL,
+    github_user_name  VARCHAR(64)  NOT NULL,
+    nationality       VARCHAR(64)  NOT NULL,
+    languages         VARCHAR(64)  NOT NULL,
+    place_of_birth    VARCHAR(64)  NOT NULL,
+    favorite_hobby    VARCHAR(64)  NOT NULL,
+    favorite_book     VARCHAR(64)  NOT NULL,
+    siblings          INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS teams (
     id            SERIAL    PRIMARY KEY,
-    team_names    TEXT      NOT NULL
+    team_names    VARCHAR(64)  NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS userteam (
+    user_id       INTEGER REFERENCES users(id),
+    team_id       INTEGER REFERENCES teams(id)
 );
 
 CREATE TABLE IF NOT EXISTS teamprojects (
-    id               SERIAL    PRIMARY KEY,
-    team_id          INTEGER REFERENCES teams(id)
-    project_names    TEXT      NOT NULL
+    id               SERIAL       PRIMARY KEY,
+    team_id          INTEGER REFERENCES teams(id),
+    project_names    VARCHAR(64)  NOT NULL,
+    project_url      VARCHAR(64)  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS mentors (
     id              SERIAL    PRIMARY KEY,
-    mentor_name     TEXT      NOT NULL,
-    github_profile  TEXT      NOT NULL
+    mentor_name     VARCHAR(64)  NOT NULL,
+    github_profile  VARCHAR(64)  NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS usermentor (
+    mentor_id     INTEGER REFERENCES mentors(id),
+    user_id       INTEGER REFERENCES users(id)
+);
 
 COMMIT;
