@@ -24,4 +24,4 @@ See our database.md(ADD URL) to see all of our tables clearly displayed.
 
 ## Architecting our App
 
-{DIAGRAM}
+![App architecture](./arch.png)
