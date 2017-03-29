@@ -1,4 +1,8 @@
 const url = require('url');
+const path = require('path');
+const fs = require('fs');
+
+const handler = {};
 
 /**
  * SERVE STATIC PAGES
@@ -8,6 +12,7 @@ const url = require('url');
  */
 handler.serveStatic = (request, response, page) => {
   const filePath = path.join(__dirname, '..', 'public', page);
+  console.log(filePath);
   const readStream = fs.createReadStream(filePath);
 
   readStream.on('open', () => {
@@ -41,7 +46,7 @@ handler.servePublic = (request, response) => {
     'gif':'image/gif'
   };
   if (extensionType[extension]) {
-    const readStream = fs.createReadStream(path.join(__dirname, '..', 'public', url));
+    const readStream = fs.createReadStream(path.join(__dirname, '..', url));
 
     readStream.on('open', () => {
       readStream.pipe(response);
@@ -98,3 +103,5 @@ handler.serveError = (request, response, err) => {
   response.end('404: Page not found');
 
 };
+
+module.exports = handler;

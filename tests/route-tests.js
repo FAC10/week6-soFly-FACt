@@ -2,9 +2,9 @@ const test = require('tape');
 const shot = require('shot');
 const fs = require('fs');
 const path = require('path');
-const router = require('./../../src/router');
+const router = require('./../src/router');
 
-const htmlFile =   fs.readFileSync(path.join(__dirname, '..','..', 'public', 'index.html'), 'utf-8');
+const htmlFile =   fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf-8');
 
 // EXAMPLE OBJECT TO RUN MULTIPLE ROUTE TESTS WITH
 // Each key in the object is the name of a test.
@@ -20,11 +20,17 @@ const routesToTest = {
       headers: {'Content-Type':'text/html'},
       payload: htmlFile
     }],
-  brokenurl:[{url:'/brokenurl'},
+  brokenUrl:[{url:'/thisIsNotAUrl', method:'get'},
     {
       statusCode: 404,
-      headers: {'Content-Type':'text/html'},
-      payload: '404: Page not found'
+    }],
+  assetsWithNoAsset:[{url:'/assets', method:'get'},
+    {
+      statusCode: 404,
+    }],
+  user:[{url:'/user', method:'get'},
+    {
+      statusCode: 200,
     }],
 };
 

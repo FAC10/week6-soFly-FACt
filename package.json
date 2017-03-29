@@ -4,10 +4,10 @@
   "description": "\"FACer Profiles\"",
   "main": "index.js",
   "scripts": {
-      "test": "node test/tests.js | tap-spec",
+      "test": "node tests/tests.js | tap-spec",
       "start": "node src/server.js",
       "devStart": "nodemon src/server",
-      "coverage": "istanbul cover test/tests.js"
+      "coverage": "istanbul cover tests/tests.js"
     },
   "repository": {
     "type": "git",
