@@ -2,6 +2,8 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 
+const getData = require('./database/getData');
+
 const handler = {};
 
 /**
@@ -85,9 +87,20 @@ handler.teamSearch = (req, res) => {
  * @param  {object} res [description]
  */
 handler.userSearch = (req, res) => {
-  const query = url.parse(req.url, true);
+  const query = url.parse(req.url, true).query;
 
-  console.log(query);
+  if (query.user) {
+    const userId = query.user.replace(/[^0-9]/gi, '');
+    if (userId) {
+      getData(userId);
+    }
+
+  } else if(query.hasOwnProperty('all')) {
+
+
+  } else {
+    handler.serveError(req, res, new Error('Incorrect query.'))
+  }
 }
 
 /**
