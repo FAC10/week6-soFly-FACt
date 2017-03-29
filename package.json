@@ -1,0 +1,34 @@
+{
+  "name": "week6-sofly-fact",
+  "version": "1.0.0",
+  "description": "\"FACer Profiles\"",
+  "main": "index.js",
+  "scripts": {
+      "test": "node test/tests.js | tap-spec",
+      "start": "node src/server.js",
+      "devStart": "nodemon src/server",
+      "coverage": "istanbul cover test/tests.js"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC10/week6-soFly-FACt.git"
+  },
+  "author": "So-Fly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC10/week6-soFly-FACt/issues"
+  },
+  "homepage": "https://github.com/FAC10/week6-soFly-FACt#readme",
+  "devDependencies": {
+    "codecov": "^2.1.0",
+    "istanbul": "^0.4.5",
+    "shot": "^3.4.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "env2": "^2.1.1",
+    "request": "^2.81.0",
+    "require": "^2.4.20"
+  }
+}
