@@ -4,11 +4,11 @@
   "description": "\"FACer Profiles\"",
   "main": "index.js",
   "scripts": {
-      "test": "node tests/tests.js | tap-spec",
-      "start": "node src/server.js",
-      "devStart": "nodemon src/server",
-      "coverage": "istanbul cover tests/tests.js"
-    },
+    "test": "node tests/tests.js | tap-spec",
+    "start": "node src/server.js",
+    "devStart": "nodemon src/server",
+    "coverage": "istanbul cover tests/tests.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FAC10/week6-soFly-FACt.git"
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "env2": "^2.1.1",
+    "pg": "^6.1.5",
     "request": "^2.81.0",
     "require": "^2.4.20"
   }
