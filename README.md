@@ -10,7 +10,7 @@ Our user will be able to search/select and access useful and interesting facts a
 
 ## User Journey
 
-The user will be able to see all FAC members' names and photos by default. 
+The user will be able to see all FAC members' names and photos by default.
 
 They can filter through the members using a drop-down list at the top, e.g. find all users in a certain team.
 
