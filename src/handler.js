@@ -12,7 +12,6 @@ const handler = {};
  */
 handler.serveStatic = (request, response, page) => {
   const filePath = path.join(__dirname, '..', 'public', page);
-  console.log(filePath);
   const readStream = fs.createReadStream(filePath);
 
   readStream.on('open', () => {
