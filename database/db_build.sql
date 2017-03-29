@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS users, teams, userteam, teamprojects, mentors, usermentor C
 CREATE TABLE IF NOT EXISTS users (
     id                SERIAL     PRIMARY KEY,
     first_name        VARCHAR(64)  NOT NULL,
+    middle_name       VARCHAR(64),
     last_name         VARCHAR(64)  NOT NULL,
     github_user_name  VARCHAR(64)  NOT NULL,
     nationality       VARCHAR(64)  NOT NULL,
@@ -14,6 +15,12 @@ CREATE TABLE IF NOT EXISTS users (
     favorite_book     VARCHAR(64)  NOT NULL,
     siblings          INTEGER
 );
+
+INSERT INTO users (first_name, middle_name, last_name, github_user_name, nationality, languages, place_of_birth, favorite_hobby, favorite_book, siblings) VALUES ('Yvonne', 'Yutong', 'Liu', 'yvonne-liu', 'American', 'English, Mandarin Chinese, some Italian', 'Taipei, Taiwan', 'Hiking', 'East of Eden', 0);
+INSERT INTO users (first_name, middle_name, last_name, github_user_name, nationality, languages, place_of_birth, favorite_hobby, favorite_book, siblings) VALUES ('Finn', 'Webb Newell', 'Hodgkin', 'finnhodgkin', 'British', 'English', 'London, UK', 'Climbing', 'The Lacuna', 2);
+INSERT INTO users (first_name, middle_name, last_name, github_user_name, nationality, languages, place_of_birth, favorite_hobby, favorite_book, siblings) VALUES ('Lucy', 'Rose', 'Sabin', 'lucyrose93', 'British', 'English, French, Spanish', 'West Sussex, UK', 'Yoga', 'Alice"s Adventures in Wonderland', 1);
+INSERT INTO users (first_name, middle_name, last_name, github_user_name, nationality, languages, place_of_birth, favorite_hobby, favorite_book, siblings) VALUES ('Samatar', NULL, 'Axmed', 'samatar26', 'Dutch', 'English, Somali, Dutch', 'Apeldoorn', 'Weightlifting', 'Het lot van de familie Meijer', 4);
+
 
 CREATE TABLE IF NOT EXISTS teams (
     id            SERIAL    PRIMARY KEY,
