@@ -33,7 +33,11 @@ const routesToTest = {
       statusCode: 200,
       headers: {'Content-Type':'text/css'},
     }],
-  user:[{url:'/user', method:'get'},
+  assetsWithBadAsset:[{url:'/public/styleeeee.css'},
+    {
+      statusCode: 404
+    }],
+  routeWithNoHtml:[{url:'/test', method:'get'},
     {
       statusCode: 404,
     }],

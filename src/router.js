@@ -7,7 +7,7 @@ const router = (req, res) => {
 
   const page = {
     '/' : 'index.html',
-    '/user' : 'user.html',
+    '/test' : 'test.html',
   }[pathname];
 
   const api = {
