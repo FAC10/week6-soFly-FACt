@@ -4,6 +4,13 @@ main {
   font-size: 0;
 }
 
+.header{
+  text-align: center;
+}
+
+.nav{
+  text-align: center;
+}
 .user{
   text-decoration: none;
   width: 25%;
