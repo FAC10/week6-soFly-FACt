@@ -40,6 +40,14 @@ main {
   margin-top: 1rem;
 }
 
+.form{
+
+}
+
+.form__input{
+  display: block;
+}
+
 @media screen and (max-width:56.25rem){
   .user__profile__caption{
     font-size: 1.5rem;
