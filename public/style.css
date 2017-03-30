@@ -1,13 +1,14 @@
 main {
   max-width: 1400px;
   margin: 0 auto;
+  font-size: 0;
 }
 
 .user {
   width: 25%;
   box-sizing: border-box;
   padding: 5%;
-  background-color: black;
+  display: inline-block;
 }
 
 .user__image {

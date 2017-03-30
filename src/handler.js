@@ -82,9 +82,9 @@ handler.teamSearch = (req, res) => {
 }
 
 /**
- * HANDLE DATABASE QUERIES FOR THE SEARCH PAGE
- * @param  {object} req [description]
- * @param  {object} res [description]
+ * HANDLE DATABASE QUERIES FOR THE USER SEARCH PAGE
+ * @param  {object} req [http server request object]
+ * @param  {object} res [http server response object]
  */
 handler.userSearch = (req, res) => {
   const query = url.parse(req.url, true).query;
