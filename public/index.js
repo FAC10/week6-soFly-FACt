@@ -21,6 +21,8 @@ function handleUsers (err, users) {
     return;
   }
 
+  document.querySelector('main').innerHTML = '';
+
   users.forEach(function (user) {
     document.querySelector('main').appendChild(buildUser(user));
   });
@@ -51,3 +53,11 @@ function buildUser (user) {
 
   return userLink;
 }
+
+
+
+
+var teamSelect = document.getElementById('team-select');
+teamSelect.addEventListener('change', function(e) {
+  fetch('/users?team=' + this.value, handleUsers);
+});
