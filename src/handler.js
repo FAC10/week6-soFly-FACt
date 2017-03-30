@@ -70,6 +70,28 @@ handler.servePublic = (request, response) => {
   }
 };
 
+
+handler.addUser = (req, res) =>{
+  let data = '';
+  req.on('data', function(chunk){
+    data+=chunk;
+  });
+  req.on('end', ()=>{
+    // var formFields = data;
+    // var newformFields = formFields.replace(/=/gi, '\': \'');
+    var ampersandsplit = data.split('&');
+    var arr = [];
+    ampersandsplit.forEach(item=>{
+      var keyValue = item.split('=');
+      var obj = {};
+      obj[keyValue[0]]=keyValue[1];
+      arr.push(obj);
+    });
+    console.log(arr);
+
+  });
+};
+
 /**
  * HANDLE DATABASE QUERIES FOR USERS
  * @param  {object} req [description]
@@ -78,8 +100,7 @@ handler.servePublic = (request, response) => {
 handler.teamSearch = (req, res) => {
   const query = url.parse(req.url, true);
 
-  console.log(query);
-}
+};
 
 /**
 * HANDLE DATABASE QUERIES FOR THE USER SEARCH PAGE

@@ -4,7 +4,7 @@ const _url = require('url');
 const router = (req, res) => {
   const url = req.url;
   const pathname = _url.parse(url).pathname;
-
+  console.log(url);
   const page = {
     '/' : 'index.html',
     '/test' : 'test.html',
@@ -23,6 +23,8 @@ const router = (req, res) => {
   } else if (api) {
     api(req, res);
 
+  } else if (url==='/addusers'){
+    handler.addUser(req, res);
   } else if (url.indexOf('/public')===0) {
     handler.servePublic(req, res);
 
