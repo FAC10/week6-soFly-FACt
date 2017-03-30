@@ -35,15 +35,15 @@ function createElement(tag, options) {
 };
 
 function buildUser (user) {
-  var userLink = createElement('a', { href: '/users?user=' + user.id, className: 'user' });
+  var userLink = createElement('a', { href: '/users?user=' + user.id, className: 'user', innerText: 'View ' + user.first_name + '\'s profile'  });
 
   var user_DOM = createElement('figure', { className: 'user__profile' });
 
   var imageLink = './public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg';
-  var userImage = createElement('img', { className: 'user__profile__image', src: imageLink });
+  var userImage = createElement('img', { className: 'user__profile__image', src: imageLink, alt:user.first_name + '\'s profile portrait' });
 
   var name = user.first_name + ' ' + user.last_name;
-  var caption = createElement('figcaption', { innerText: name });
+  var caption = createElement('figcaption', { innerText: name, className: 'user__profile__caption' });
 
   user_DOM.appendChild(userImage);
   user_DOM.appendChild(caption);
