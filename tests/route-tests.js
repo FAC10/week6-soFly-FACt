@@ -28,9 +28,14 @@ const routesToTest = {
     {
       statusCode: 404,
     }],
-  user:[{url:'/user', method:'get'},
+  assetsWithAsset:[{url:'/public/style.css'},
     {
       statusCode: 200,
+      headers: {'Content-Type':'text/css'},
+    }],
+  user:[{url:'/user', method:'get'},
+    {
+      statusCode: 404,
     }],
 };
 
