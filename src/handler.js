@@ -72,28 +72,31 @@ handler.servePublic = (request, response) => {
 
 
 handler.addUser = (req, res) =>{
-  let data = '';
+  let body = '';
   req.on('data', function(chunk){
-    data+=chunk;
+    body+=chunk;
   });
   req.on('end', ()=>{
     // var formFields = data;
     // var newformFields = formFields.replace(/=/gi, '\': \'');
-    var ampersandsplit = data.split('&');
+    var ampersandSplit = body.split('&');
     var arr = [];
-    ampersandsplit.forEach(item=>{
+
+    var userinfo = ampersandSplit.reduce((acc, item)=>{
       var keyValue = item.split('=');
-      var obj = {};
-      obj[keyValue[0]]=keyValue[1];
-      arr.push(obj);
-    });
-    arr.forEach(item=>{
-      data.addUser(item, (err, res)=>{
-        if (err) console.log('not adding user');
-        console.log('Added user')
-      })
-    })
-    console.log(arr);
+      acc[keyValue[0]]=keyValue[1];
+      return acc;
+    }, {});
+
+    console.log(userinfo);
+
+
+
+      data.addUserToDatabase(userinfo, (err, res)=>{
+        if (err) console.log(err);
+        console.log(res);
+      });
+
 
   });
 };
@@ -146,10 +149,24 @@ handler.userSearch = (req, res) => {
 
   } else if(Object.hasOwnProperty.call(query, 'all')) {
       data.getAllUsers((err, data)=>{
-        if (err) throw new Error;
+        if (err) {
+          serveError(req, res, err);
+          return;
+        }
         res.writeHead(200, {'Content-Type':'application/json'});
         res.end(JSON.stringify(data));
       });
+
+  } else if (query.team) {
+    const teamName = query.team.replace(/[^0-9a-z]/gi, '');
+    data.getUsersFromTeam(teamName, (err, data) => {
+      if (err) {
+        handler.serveError(req, res, err);
+        return;
+      }
+      res.writeHead(200, {'Content-Type':'application/json'});
+      res.end(JSON.stringify(data));
+    });
 
   } else {
     handler.serveError(req, res, new Error('Incorrect query.'))
