@@ -13,5 +13,41 @@ var fetch = function(url, cb) {
   xhr.send();
 };
 
-fetch('/users', console.log);
-fetch('/teams', console.log);
+fetch('/users?all', handleUsers);
+
+function handleUsers (err, users) {
+  if (err) {
+    console.log(err.message);
+    return;
+  }
+
+  users.forEach(function (user) {
+    document.querySelector('main').appendChild(buildUser(user));
+  });
+}
+
+function createElement(tag, options) {
+  var element = document.createElement(tag);
+  for (option in options) {
+    element[option] = options[option];
+  }
+  return element;
+};
+
+function buildUser (user) {
+  var userLink = createElement('a', { href: '/users?user=' + user.id, className: 'user' });
+
+  var user_DOM = createElement('figure', { className: 'user__profile' });
+
+  var imageLink = './public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg';
+  var userImage = createElement('img', { className: 'user__profile__image', src: imageLink });
+
+  var name = user.first_name + ' ' + user.last_name;
+  var caption = createElement('figcaption', { innerText: name });
+
+  user_DOM.appendChild(userImage);
+  user_DOM.appendChild(caption);
+  userLink.appendChild(user_DOM);
+
+  return userLink;
+}
