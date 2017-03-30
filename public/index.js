@@ -43,8 +43,7 @@ function buildUser (user) {
   var userImage = createElement('img', { className: 'user__profile__image', src: imageLink });
 
   var name = user.first_name + ' ' + user.last_name;
-  console.log(name);
-  var caption = document.createElement('figcaption');
+  var caption = createElement('figcaption', { innerText: name });
 
   user_DOM.appendChild(userImage);
   user_DOM.appendChild(caption);
