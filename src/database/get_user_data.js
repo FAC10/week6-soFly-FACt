@@ -9,4 +9,11 @@ data.getAllUsers = (cb) =>{
   });
 }
 
+data.getUser = (id, cb) => {
+  db_connection.query(`SELECT first_name, middle_name, last_name FROM users WHERE users.id = ${id}`, (err,res)=>{
+    if(err) cb(new Error('Error getting data from database'));
+    cb(null, res.rows[0]);
+  });
+}
+
 module.exports = data;
