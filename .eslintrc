@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jquery": true
+    },
+    "globals": {
+        "describe": true,
+        "test": true,
+        "expect": true
+    },
+    "extends": "eslint:recommended",
+    "installedESLint": true,
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [2, 2, {"SwitchCase": 1}],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single", { "allowTemplateLiterals": true }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": 0,
+        "no-console": 0,
+        "no-debugger": 0
+    }
+}
