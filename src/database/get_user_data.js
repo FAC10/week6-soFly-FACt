@@ -14,6 +14,13 @@ data.getUser = (id, cb) => {
     if(err) cb(new Error('Error getting data from database'));
     cb(null, res.rows[0]);
   });
-}
+};
+
+data.addUser = (formvalues, cb) => {
+  db_connection.query(`INSERT INTO users (${Object.keys(formvalues)[0]}) VALUES  formvalues[${Object.keys(formvalues)[0]}]`, (err, res)=>{
+    if (err) cb(new Error('Error getting data from database'));
+    cb(null, res.rows);
+  });
+};
 
 module.exports = data;

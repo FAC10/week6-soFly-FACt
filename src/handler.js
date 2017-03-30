@@ -87,6 +87,12 @@ handler.addUser = (req, res) =>{
       obj[keyValue[0]]=keyValue[1];
       arr.push(obj);
     });
+    arr.forEach(item=>{
+      data.addUser(item, (err, res)=>{
+        if (err) console.log('not adding user');
+        console.log('Added user')
+      })
+    })
     console.log(arr);
 
   });
