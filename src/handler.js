@@ -91,7 +91,7 @@ handler.userSearch = (req, res) => {
   if (query.user) {
     const userId = query.user.replace(/[^0-9]/gi, '');
     if (userId) {
-      fs.readFile('./public/user.html', 'utf8', (err, file) => {
+      fs.readFile(path.join(__dirname, 'assets', 'user.html'), 'utf8', (err, file) => {
         data.getUser(userId, (err, user) => {
           const userHtml =
           `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
