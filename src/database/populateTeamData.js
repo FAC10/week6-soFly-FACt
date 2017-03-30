@@ -20,7 +20,7 @@ populateTeams.userteam = (user, team) => {
   db_connection.query(`INSERT INTO userteam (user_id, team_id) VALUES ((SELECT id FROM users WHERE users.first_name = '${user}'), (SELECT id FROM teams WHERE teams.team_names = '${team}'));`,
   (err, id) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     } else console.log('it worked.');
   });
 };
@@ -41,7 +41,23 @@ const teams = [
   ['Philippa', 'Zapo'],
   ['Martha', 'ammp'],
   ['Antonio', 'Jajascript'],
-  ['Zooey', 'Zapo']
+  ['Zooey', 'Zapo'],
+  ['Yvonne', 'FACXMachine'],
+  ['Finn', 'PAMF'],
+  ['Lucy', 'JZLP'],
+  ['Samatar', 'Facalacalaca'],
+  ['Jessica', 'FACXMachine'],
+  ['Alexis', 'Facalacalaca'],
+  ['Alice', 'Facalacalaca'],
+  ['Oliver', 'FACXMachine'],
+  ['Maja', 'PAMF'],
+  ['Akin', 'FACXMachine'],
+  ['Piotr', 'JZLP'],
+  ['Joey', 'JZLP'],
+  ['Philippa', 'PAMF'],
+  ['Martha', 'Facalacalaca'],
+  ['Antonio', 'PAMF'],
+  ['Zooey', 'JZLP']
 ];
 
 const buildUserTeam = (teams) => {
