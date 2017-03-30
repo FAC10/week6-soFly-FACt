@@ -8,6 +8,7 @@ const router = (req, res) => {
   const page = {
     '/' : 'index.html',
     '/test' : 'test.html',
+    '/adduser':'adduser.html'
   }[pathname];
 
   const api = {
