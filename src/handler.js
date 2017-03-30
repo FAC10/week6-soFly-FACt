@@ -95,7 +95,7 @@ handler.userSearch = (req, res) => {
         data.getUser(userId, (err, user) => {
           const userHtml =
           `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
-          <img src=${'../public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg'}>
+          <img class="userimg" src=${'../public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg'}>
           <ul>
           <li>Github username: <a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></li>
           <li>Nationality: ${user.nationality}</li>
