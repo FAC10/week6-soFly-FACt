@@ -91,7 +91,28 @@ handler.userSearch = (req, res) => {
   if (query.user) {
     const userId = query.user.replace(/[^0-9]/gi, '');
     if (userId) {
-      data.get();
+      fs.readFile('./public/user.html', 'utf8', (err, file) => {
+        data.getUser(userId, (err, user) => {
+          const userHtml =
+          `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
+          <img src='https://www.miami-institute.com/wp-content/uploads/2015/02/placeholder-500x5001.gif'>
+          <ul>
+          <li>Github username: <a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></li>
+          <li>Nationality: <span class="nationality">Mexican</span></li>
+          <li>Languages spoken: <span class="languages">Spanish</span></li>
+          <li>Place of birth: <span class="pob">DF</span></li>
+          <li>Favourite hobby: <span class="hobby">salsa</span></li>
+          <li>Favourite book: <span class="book">poetry</span></li>
+          <li>Number of siblings: <span class="siblings">5</span></li>
+          </ul>`
+
+          const html = file.replace(/<!--REPLACETHIS-->/, userHtml);
+
+          res.writeHead(200, {'Content-Type': 'text/html' });
+          res.end(html);
+        });
+
+      })
 
     }
 
