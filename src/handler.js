@@ -94,11 +94,10 @@ handler.userSearch = (req, res) => {
       fs.readFile('./public/user.html', 'utf8', (err, file) => {
         data.getUser(userId, (err, user) => {
           const userHtml =
-          `<h1>${user.first_name} ${user.middle_name} ${user.last_name}</h1>
+          `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
           <img src='https://www.miami-institute.com/wp-content/uploads/2015/02/placeholder-500x5001.gif'>
           <ul>
-          <li>Name: <span class="name">Ms Example</span></li>
-          <li>Github username: <span class="username">Icode</span></li>
+          <li>Github username: <a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></li>
           <li>Nationality: <span class="nationality">Mexican</span></li>
           <li>Languages spoken: <span class="languages">Spanish</span></li>
           <li>Place of birth: <span class="pob">DF</span></li>
