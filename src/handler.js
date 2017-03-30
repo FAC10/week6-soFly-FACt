@@ -119,10 +119,24 @@ handler.userSearch = (req, res) => {
 
   } else if(Object.hasOwnProperty.call(query, 'all')) {
       data.getAllUsers((err, data)=>{
-        if (err) throw new Error;
+        if (err) {
+          serveError(req, res, err);
+          return;
+        }
         res.writeHead(200, {'Content-Type':'application/json'});
         res.end(JSON.stringify(data));
       });
+
+  } else if (query.team) {
+    const teamName = query.team.replace(/[^0-9a-z]/gi, '');
+    data.getUsersFromTeam(teamName, (err, data) => {
+      if (err) {
+        handler.serveError(req, res, err);
+        return;
+      }
+      res.writeHead(200, {'Content-Type':'application/json'});
+      res.end(JSON.stringify(data));
+    });
 
   } else {
     handler.serveError(req, res, new Error('Incorrect query.'))

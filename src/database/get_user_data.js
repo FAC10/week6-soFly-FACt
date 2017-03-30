@@ -14,6 +14,13 @@ data.getUser = (id, cb) => {
     if(err) cb(new Error('Error getting data from database'));
     cb(null, res.rows[0]);
   });
-}
+};
+
+data.getUsersFromTeam = (teamName, cb) => {
+  db_connection.query(`SELECT users.id, first_name, last_name FROM users INNER JOIN userteam ON users.id = userteam.user_id INNER JOIN teams ON userteam.team_id = teams.id WHERE LOWER(teams.team_names) = LOWER('${teamName}')`, (err,res)=>{
+    if(err) cb(new Error('Error getting data from database'));
+    cb(null, res.rows);
+  });
+};
 
 module.exports = data;
