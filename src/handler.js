@@ -121,8 +121,7 @@ handler.userSearch = (req, res) => {
 
   } else if (query.team) {
 
-    const teamName = query.team.replace(/[^0-9a-z]/gi, '');
-    data.getUsersFromTeam(teamName, (err, data) => {
+    data.getUsersFromTeam(query.team, (err, data) => {
       if (err) return handler.serveError(req, res, err);
       res.writeHead(200, {'Content-Type':'application/json'});
       res.end(JSON.stringify(data));
