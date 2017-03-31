@@ -125,17 +125,20 @@ handler.userSearch = (req, res) => {
         data.getUser(userId, (err, user) => {
           const userHtml =
           `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
-          <img class="userimg" src=${'../public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg'}>
-          <ul>
-          <li>Github username: <a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></li>
-          <li>Nationality: ${user.nationality}</li>
-          <li>Languages spoken: ${user.languages}</li>
-          <li>Place of birth: ${user.place_of_birth}</li>
-          <li>Favourite hobby: ${user.favorite_hobby}</li>
-          <li>Favourite book: ${user.favorite_book}</li>
-          <li>Number of siblings: ${user.siblings}</li>
-          </ul>`;
+          <a class="userprofile__image" href="/">
+            <img class="userprofile__image__img" src=${'../public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg'}>
+            <section class="userprofile__image__back">Go back</section>
+          </a>
+          <table>
 
+            <tr><td>Github: </td><td><a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></td></tr>
+            <tr><td>Nationality: </td><td>${user.nationality}</td></tr>
+            <tr><td>Languages: </td><td>${user.languages}</td></tr>
+            <tr><td>Place of birth: </td><td>${user.place_of_birth}</td></tr>
+            <tr><td>Favourite hobby: </td><td>${user.favorite_hobby}</td></tr>
+            <tr><td>Favourite book: </td><td>${user.favorite_book}</td></tr>
+            <tr><td>Siblings: </td><td>${user.siblings}</td></tr>
+          </table>`;
 
           const html = file.replace(/<!--REPLACETHIS-->/, userHtml);
 
