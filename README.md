@@ -10,7 +10,7 @@ Our user will be able to search/select and access useful and interesting facts a
 ## Getting Started
 ```
 - Clone / fork this repo.
-- cd into the repo in your command line $ cd db-morning-challenge
+- cd into the repo in your command line $ cd week6-soFly-FACt
 - Install dependencies with $ npm install
 - In your browser, go to ElephantSQL
 - Log into ElephantSQL via GitHub
