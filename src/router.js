@@ -4,7 +4,7 @@ const _url = require('url');
 const router = (req, res) => {
   const url = req.url;
   const pathname = _url.parse(url).pathname;
-  console.log(url);
+
   const page = {
     '/' : 'index.html',
     '/test' : 'test.html',

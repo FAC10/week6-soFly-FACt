@@ -16,25 +16,22 @@ data.getUser = (id, cb) => {
   });
 };
 
-
-
 data.addUserToDatabase = (formvalues, cb) => {
   const userKeys = Object.keys(formvalues).join(', ');
   const userValues = Object.keys(formvalues).map(e=>{
     return `'${formvalues[e]}'`;
   }).join(', ');
 
-
-
   db_connection.query(`INSERT INTO users (${userKeys}) VALUES (${userValues}) `, (err, res)=>{
     if (err) cb(err);
-
     cb(null, res);
   });
 };
 
 data.getUsersFromTeam = (teamName, cb) => {
-  db_connection.query(`SELECT users.id, first_name, last_name FROM users INNER JOIN userteam ON users.id = userteam.user_id INNER JOIN teams ON userteam.team_id = teams.id WHERE LOWER(teams.team_names) = LOWER('${teamName}')`, (err,res)=>{
+  const strippedName = teamName.replace(/[^0-9a-z]/gi, '');
+
+  db_connection.query(`SELECT users.id, first_name, last_name FROM users INNER JOIN userteam ON users.id = userteam.user_id INNER JOIN teams ON userteam.team_id = teams.id WHERE LOWER(teams.team_names) = LOWER('${strippedName}')`, (err,res)=>{
     if(err) cb(new Error('Error getting data from database'));
     cb(null, res.rows);
   });

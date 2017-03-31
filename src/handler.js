@@ -79,11 +79,9 @@ handler.servePublic = (request, response) => {
 handler.addUser = (req, res) =>{
   let body = '';
   req.on('data', function(chunk){
-    body+=chunk;
+    body += chunk;
   });
   req.on('end', ()=>{
-    // var formFields = data;
-    // var newformFields = formFields.replace(/=/gi, '\': \'');
     var ampersandSplit = body.split('&');
     var arr = [];
 
@@ -93,14 +91,11 @@ handler.addUser = (req, res) =>{
       return acc;
     }, {});
 
-
-      data.addUserToDatabase(userinfo, (err)=>{
-        if (err){ handler.serveError(err);return;}
-        res.writeHead(301, {Location: '/'});
-        res.end();
-
-      });
-
+    data.addUserToDatabase(userinfo, (err)=>{
+      if (err){ handler.serveError(err);return;}
+      res.writeHead(301, {Location: '/'});
+      res.end();
+    });
 
   });
 };
@@ -126,8 +121,7 @@ handler.userSearch = (req, res) => {
 
   } else if (query.team) {
 
-    const teamName = query.team.replace(/[^0-9a-z]/gi, '');
-    data.getUsersFromTeam(teamName, (err, data) => {
+    data.getUsersFromTeam(query.team, (err, data) => {
       if (err) return handler.serveError(req, res, err);
       res.writeHead(200, {'Content-Type':'application/json'});
       res.end(JSON.stringify(data));
