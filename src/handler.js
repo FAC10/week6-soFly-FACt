@@ -88,13 +88,13 @@ handler.addUser = (req, res) =>{
       return acc;
     }, {});
 
-    console.log(userinfo);
 
 
+      data.addUserToDatabase(userinfo, (err)=>{
+        if (err){ handler.serveError(err);return;}
+        res.writeHead(301, {Location: '/'});
+        res.end();
 
-      data.addUserToDatabase(userinfo, (err, res)=>{
-        if (err) console.log(err);
-        console.log(res);
       });
 
 
