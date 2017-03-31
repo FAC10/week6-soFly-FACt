@@ -24,4 +24,4 @@ See our database.md(ADD URL) to see all of our tables clearly displayed.
 
 ## Architecting our App
 
-![App architecture](./arch.png)
+![arch](https://cloud.githubusercontent.com/assets/22013117/24546946/6a360a7e-1605-11e7-8bd5-8142aa9540cb.png)
