@@ -4,6 +4,20 @@
 
 Our user will be able to search/select and access useful and interesting facts about each member of FAC 10.
 
+## Getting Started
+```
+- Clone / fork this repo.
+- cd into the repo in your command line $ cd db-morning-challenge
+- Install dependencies with $ npm install
+- In your browser, go to ElephantSQL
+- Log into ElephantSQL via GitHub
+- Click on 'Create new instance' to create a new database
+- Give your database a name, choose the 'Tiny Turtly' free plan, and select any data center from the list
+- Click on the name of your new new database to see details; you'll need the URL. Copy this to your clipboard!
+- Back in your command line, create a config.env file with the url of your new database. You can do that like this  $ echo "export DB_URL = {YOUR_COPIED_URL}" >> "config.env"
+- Build your database by running: $ node database/db_build.js
+```
+
 ## Designing our Interface
 
 {DESIGN}
