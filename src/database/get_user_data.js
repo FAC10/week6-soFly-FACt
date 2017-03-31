@@ -24,8 +24,7 @@ data.addUserToDatabase = (formvalues, cb) => {
     return `'${formvalues[e]}'`;
   }).join(', ');
 
-console.log(userKeys);
-console.log(userValues);
+
 
   db_connection.query(`INSERT INTO users (${userKeys}) VALUES (${userValues}) `, (err, res)=>{
     if (err) cb(err);
