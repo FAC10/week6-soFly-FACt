@@ -16,19 +16,14 @@ data.getUser = (id, cb) => {
   });
 };
 
-
-
 data.addUserToDatabase = (formvalues, cb) => {
   const userKeys = Object.keys(formvalues).join(', ');
   const userValues = Object.keys(formvalues).map(e=>{
     return `'${formvalues[e]}'`;
   }).join(', ');
 
-
-
   db_connection.query(`INSERT INTO users (${userKeys}) VALUES (${userValues}) `, (err, res)=>{
     if (err) cb(err);
-
     cb(null, res);
   });
 };

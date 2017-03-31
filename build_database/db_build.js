@@ -1,4 +1,5 @@
 const fs = require('fs');
+const teams = require('./populateTeamData');
 
 const buildDatabase = () => {
   const connection = require('./db_connection');
@@ -8,6 +9,7 @@ const buildDatabase = () => {
     if (err) {
       console.log(err, "error");
     } else {
+      teams();
       console.log("database created");
     }
   });

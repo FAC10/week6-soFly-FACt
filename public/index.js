@@ -30,11 +30,11 @@ function handleUsers (err, users) {
 
 function createElement(tag, options) {
   var element = document.createElement(tag);
-  for (option in options) {
+  for (var option in options) {
     element[option] = options[option];
   }
   return element;
-};
+}
 
 function buildUser (user) {
   var userLink = createElement('a', { href: '/users?user=' + user.id, className: 'user', innerText: 'View ' + user.first_name + '\'s profile'  });

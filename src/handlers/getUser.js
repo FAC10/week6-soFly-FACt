@@ -33,7 +33,6 @@ const buildUser = (userId, cb) => {
       cb(err);
       return;
     } else if (!user) {
-      console.log('NO USER FOUND!');
       cb(new Error('No user found'));
       return;
     }
