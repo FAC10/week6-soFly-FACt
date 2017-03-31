@@ -2,6 +2,7 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 
+const getUser = require('./handlers/getUser');
 const data = require('./database/get_user_data.js');
 
 const handler = {};
@@ -70,7 +71,11 @@ handler.servePublic = (request, response) => {
   }
 };
 
-
+/**
+ * INPUT NEW USERS FROM OUR FRONTEND FORM
+ * @param {object} req
+ * @param {object} res
+ */
 handler.addUser = (req, res) =>{
   let body = '';
   req.on('data', function(chunk){
@@ -90,8 +95,6 @@ handler.addUser = (req, res) =>{
 
     console.log(userinfo);
 
-
-
       data.addUserToDatabase(userinfo, (err, res)=>{
         if (err) console.log(err);
         console.log(res);
@@ -102,79 +105,39 @@ handler.addUser = (req, res) =>{
 };
 
 /**
- * HANDLE DATABASE QUERIES FOR USERS
- * @param  {object} req [description]
- * @param  {object} res [description]
- */
-handler.teamSearch = (req, res) => {
-  const query = url.parse(req.url, true);
-
-};
-
-/**
 * HANDLE DATABASE QUERIES FOR THE USER SEARCH PAGE
 * @param  {object} req [http server request object]
 * @param  {object} res [http server response object]
 */
 handler.userSearch = (req, res) => {
   const query = url.parse(req.url, true).query;
+
   if (query.user) {
-    const userId = query.user.replace(/[^0-9]/gi, '');
-    if (userId) {
-      fs.readFile(path.join(__dirname, 'assets', 'user.html'), 'utf8', (err, file) => {
-        data.getUser(userId, (err, user) => {
-          const userHtml =
-          `<h1>${user.first_name} ${user.middle_name || ''} ${user.last_name}</h1>
-          <a class="userprofile__image" href="/">
-            <img class="userprofile__image__img" src=${'../public/assets/profile-pics/' + user.first_name.toLowerCase() + '_headshot.jpg'}>
-            <section class="userprofile__image__back">Go back</section>
-          </a>
-          <table>
-
-            <tr><td>Github: </td><td><a href="${'https://www.github.com/'+user.github_user_name}">${user.github_user_name}</a></td></tr>
-            <tr><td>Nationality: </td><td>${user.nationality}</td></tr>
-            <tr><td>Languages: </td><td>${user.languages}</td></tr>
-            <tr><td>Place of birth: </td><td>${user.place_of_birth}</td></tr>
-            <tr><td>Favourite hobby: </td><td>${user.favorite_hobby}</td></tr>
-            <tr><td>Favourite book: </td><td>${user.favorite_book}</td></tr>
-            <tr><td>Siblings: </td><td>${user.siblings}</td></tr>
-          </table>`;
-
-          const html = file.replace(/<!--REPLACETHIS-->/, userHtml);
-
-          res.writeHead(200, {'Content-Type': 'text/html' });
-          res.end(html);
-        });
-
-      })
-
-    }
+    getUser(req, res, query);
 
   } else if(Object.hasOwnProperty.call(query, 'all')) {
-      data.getAllUsers((err, data)=>{
-        if (err) {
-          serveError(req, res, err);
-          return;
-        }
-        res.writeHead(200, {'Content-Type':'application/json'});
-        res.end(JSON.stringify(data));
-      });
+
+    data.getAllUsers((err, data)=>{
+      if (err) return handler.serveError(req, res, err);
+      res.writeHead(200, {'Content-Type':'application/json'});
+      res.end(JSON.stringify(data));
+    });
 
   } else if (query.team) {
+
     const teamName = query.team.replace(/[^0-9a-z]/gi, '');
     data.getUsersFromTeam(teamName, (err, data) => {
-      if (err) {
-        handler.serveError(req, res, err);
-        return;
-      }
+      if (err) return handler.serveError(req, res, err);
       res.writeHead(200, {'Content-Type':'application/json'});
       res.end(JSON.stringify(data));
     });
 
   } else {
-    handler.serveError(req, res, new Error('Incorrect query.'))
+
+    handler.serveError(req, res, new Error('Incorrect query.'));
+
   }
-}
+};
 
 /**
  * SERVE ERROR PAGE

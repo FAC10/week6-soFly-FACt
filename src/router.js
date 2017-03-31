@@ -12,7 +12,6 @@ const router = (req, res) => {
   }[pathname];
 
   const api = {
-    '/teams' : handler.teamSearch,
     '/users' : handler.userSearch,
   }[pathname];
 
