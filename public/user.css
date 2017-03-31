@@ -38,7 +38,6 @@ h1 {
   border-radius: 50%;
   width: 100%;
   opacity: 1;
-  transition: .5s all ease;
 }
 
 .userprofile__image__back {
@@ -55,6 +54,7 @@ h1 {
   margin-top: -15rem;
   color: black;
 }
+
 .userprofile__image:hover .userprofile__image__img {
   opacity: 0.5;
 }
