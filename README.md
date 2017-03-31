@@ -1,5 +1,8 @@
 # week6-soFly-FACt
 
+[![Build Status](https://travis-ci.org/yvonne-liu/week6-soFly-FACt.svg?branch=master)](https://travis-ci.org/yvonne-liu/week6-soFly-FACt)
+[![codecov](https://codecov.io/gh/yvonne-liu/week6-soFly-FACt/branch/master/graph/badge.svg)](https://codecov.io/gh/yvonne-liu/week6-soFly-FACt)
+
 ## Basic User Story
 
 Our user will be able to search/select and access useful and interesting facts about each member of FAC 10.
